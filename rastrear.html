@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rastreamento Correios</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body class="content">
+  <div id="app" style="padding: 0 20px">
+    <div class="row">
+    <div class="col-lg-4 offset-lg-4">
+    <div style="margin: 20px 0;"><h1>Rastreamento Correios</h1></div>
+    <form action="http://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm" method="POST" class="form-horizontal">
+        <input type="hidden" name="Objetos" v-bind:value="trackerId" />
+	<input type="text" v-model="trackerId" placeholder="Insira aqui o código de rastreamento" class="form-control" />
+	<div style="margin: 10px 0;">Rastreando objeto: <b>{{ trackerId }}</b>.</div>
+        <input type="submit" value="Rastrear" class="btn btn-success" />
+    </form>
+    </div>
+    </div>
+  </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            created() {
+	    	var urlString = window.location.href
+		var url = new URL(urlString);
+		var trackerId = url.searchParams.get("trackerId");
+		this.$data.trackerId = trackerId;
+	    },
+            data: {
+	        trackerId: ""
+	    }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>V.S. <3 V.S.</title>
+</head>
+
+<body>
+    <div id="content"></div>
+
+    <script>
+        (function () {
+            adicionarImagens();
+            
+            setInterval(function() {
+                adicionarImagens();
+            }, 1600);
+        })();
+
+        function adicionarImagens() {
+            var elContent = document.getElementById("content");
+
+            var elImage = document.createElement("span");
+            elImage.innerHTML = '<img src="/img/2764.png">';
+
+            elContent.appendChild(elImage);
+
+            setTimeout(() => {
+                var elImage1 = document.createElement("span");
+                elImage1.innerHTML = '<img src="/img/valeria_coracao.png" height="32">';
+
+                elContent.appendChild(elImage1);
+            }, 300);
+            
+            setTimeout(() => {
+                var elImage2 = document.createElement("span");
+                elImage2.innerHTML = '<img src="/img/valeria_coracao2.png" height="32">';
+
+                elContent.appendChild(elImage2);
+            }, 600);
+
+            setTimeout(() => {
+                var elImage3 = document.createElement("span");
+                elImage3.innerHTML = '<img src="/img/valeria_coracao3.png" height="32">';
+
+                elContent.appendChild(elImage3);
+            }, 900);
+
+            setTimeout(() => {
+                var elImage4 = document.createElement("span");
+                elImage4.innerHTML = '<img src="/img/valeria_coracao4.png" height="32">';
+
+                elContent.appendChild(elImage4);
+            }, 1200);
+        }
+    </script>
+</body>
+
+</html>
