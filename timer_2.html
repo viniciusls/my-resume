@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tempo para voltar a tomar café</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 120px;
+        }
+
+        #timer {
+            position: absolute;
+            top: 40%;
+            left: 22%;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document). ready(function() {
+            var finalDate = new Date(2019, 00, 04, 10, 00, 00, 00);
+
+            var x = setInterval(function() {
+                var nowDate = new Date();
+
+                // get total seconds between the times
+                var delta = Math.abs(finalDate - nowDate) / 1000;
+
+                // calculate (and subtract) whole days
+                var days = Math.floor(delta / 86400);
+                delta -= days * 86400;
+                if (days === 1) {
+                    textDays = "day";
+                } else {
+                    textDays = "days";
+                }
+
+                // calculate (and subtract) whole hours
+                var hours = Math.floor(delta / 3600) % 24;
+                delta -= hours * 3600;
+                hours = ("0" + hours).slice(-2);
+
+                // calculate (and subtract) whole minutes
+                var minutes = Math.floor(delta / 60) % 60;
+                delta -= minutes * 60;
+                minutes = ("0" + minutes).slice(-2);
+
+                // what's left is seconds
+                var seconds = delta % 60;  // in theory the modulus is not required
+                seconds = seconds.toString().split('.')[0];
+                seconds = ("0" + seconds).slice(-2);
+
+                $("#timer").html(days + " " + textDays + ", " + hours + "h" + minutes + "m" + seconds + "s");
+
+                if (delta < 0) {
+                    clearInterval(x);
+                    $("#timer").html("CHEGOU!!!");
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
